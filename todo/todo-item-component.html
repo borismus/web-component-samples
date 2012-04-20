@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Todo Item Component</title>
+  </head>
+  <body>
+    <element name="todo-item" extends="li" constructor="TodoItem">
+    <template>
+    <style scoped>
+      * {
+        list-bullet-style: none;
+      }
+      :root {
+        padding: 12px 20px 11px 0;
+        position: relative;
+        font-size: 24px;
+        line-height: 1.1em;
+        border-bottom: 1px solid #cccccc;
+      }
+      :root:after {
+        content: "\0020";
+        display: block;
+        height: 0;
+        clear: both;
+        overflow: hidden;
+        visibility: hidden;
+      }
+    </style>
+
+    <div class="todo">
+      <div class="display">
+        <input class="check" type="checkbox">
+        <label class="todo-content"><content></content></label>
+        <span class="todo-destroy"></span>
+      </div>
+    </div>
+    </template>
+    <script>
+      var root = null;
+      this.lifecycle({
+        created: function(r) {
+          root = r;
+        },
+      });
+
+      TodoItem.prototype.setTitle = function(title) {
+        root.querySelector('.todo-content').innerText = title;
+      };
+    </script>
+    </element>
+  </body>
+</html>

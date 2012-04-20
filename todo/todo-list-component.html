@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Todo Component</title>
+    <link rel="stylesheet" href="todo-list-component.css">
+  </head>
+  <body>
+    <element name="todo-list" extends="ul" constructor="TodoList">
+    <template>
+    <style scoped>
+      ul { margin: 0; padding: 0; }
+      #create-todo {
+        position: relative;
+      }
+      #create-todo input {
+        width: 466px;
+        font-size: 24px;
+        font-family: inherit;
+        line-height: 1.4em;
+        border: 0;
+        outline: none;
+        padding: 6px;
+        border: 1px solid #999999;
+        -moz-box-shadow: rgba(0, 0, 0, 0.2) 0 1px 2px 0 inset;
+        -webkit-box-shadow: rgba(0, 0, 0, 0.2) 0 1px 2px 0 inset;
+        -o-box-shadow: rgba(0, 0, 0, 0.2) 0 1px 2px 0 inset;
+        box-shadow: rgba(0, 0, 0, 0.2) 0 1px 2px 0 inset;
+      }
+
+      #create-todo span {
+        position: absolute;
+        z-index: 999;
+        width: 170px;
+        left: 50%;
+        margin-left: -85px;
+      }
+
+      #todo-list {
+        margin-top: 10px;
+      }
+    </style>
+
+    <div id="create-todo">
+      <input id="new-todo" placeholder="What needs to be done?" type="text">
+      <span class="ui-tooltip-top" style="display:none;">Press Enter to save this task</span>
+    </div>
+    <div id="todos">
+      <input class="check mark-all-done" type="checkbox">
+      <label for="check-all">Mark all as complete</label>
+      <ul id="todo-list">
+        <content></content>
+      </ul>
+    </div>
+    </template>
+
+    <script>
+      var root = null;
+      this.lifecycle({
+        created: function(r) {
+          root = r;
+        }
+      });
+
+      TodoList.prototype.addItem = function(title) {
+        var item = new TodoItem();
+        item.setTitle(title);
+        root.appendChild(item);
+      };
+    </script>
+    </element>
+  </body>
+</html>

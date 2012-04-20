@@ -1,0 +1,29 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Simple Web Components Example</title>
+    <link rel="components" href="todo-item-component.html">
+    <link rel="components" href="todo-list-component.html">
+    <script src="components-polyfill.js"></script>
+    <style>
+      /** This needs to go inside the main CSS file. */
+      ul { margin: 0; padding: 0; }
+      li { margin: 0; padding: 0; list-style-type: none; }
+    </style>
+</head>
+<body>
+
+  <div class="container">
+    <h1>Todos</h1>
+    <h2>(now with Web Components)</h2>
+
+    <ul is="todo-list">
+      <li is="todo-item">Create a TodoMVC template</li>
+      <li is="todo-item">Eat your lunch</li>
+    </ul>
+
+  </div>
+
+</body>
+</html>
